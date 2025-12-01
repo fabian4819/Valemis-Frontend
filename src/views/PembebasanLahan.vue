@@ -20,10 +20,10 @@
       <div class="container-fluid">
         <div class="card mb-4">
           <div class="card-body">
-            <div>
-              <a href="#" class="btn btn-primary">
+            <div class="mb-3">
+              <router-link to="/pembebasan-lahan/tambah" class="btn btn-primary">
                 <i class="bi bi-plus"></i> Tambah Pembebasan Lahan
-              </a>
+              </router-link>
             </div>
             <table ref="dataTable" class="display table table-striped table-bordered">
               <thead>
@@ -46,7 +46,7 @@
                   <td>10</td>
                   <td>Rp 750.000.000</td>
                   <td>
-                    <a class="btn btn-sm btn-info" href="#">Detail</a>
+                    <router-link class="btn btn-sm btn-info" to="/pembebasan-lahan/detail/1">Detail</router-link>
                     <button class="btn btn-sm btn-warning">Ubah</button>
                     <button class="btn btn-sm btn-danger">Hapus</button>
                   </td>

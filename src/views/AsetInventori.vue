@@ -20,10 +20,10 @@
       <div class="container-fluid">
         <div class="card mb-4">
           <div class="card-body">
-            <div>
-              <a href="#" class="btn btn-primary">
+            <div class="mb-3">
+              <router-link to="/aset-inventori/tambah" class="btn btn-primary">
                 <i class="bi bi-plus"></i> Tambah Responden
-              </a>
+              </router-link>
             </div>
             <table
               ref="dataTable"

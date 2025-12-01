@@ -1,8 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Dashboard from '../views/Dashboard.vue'
 import AsetInventori from '../views/AsetInventori.vue'
+import TambahAsetInventori from '../views/TambahAsetInventori.vue'
 import PembebasanLahan from '../views/PembebasanLahan.vue'
+import TambahPembebasanLahan from '../views/TambahPembebasanLahan.vue'
+import DetailPembebasanLahan from '../views/DetailPembebasanLahan.vue'
+import TambahPemilikLahan from '../views/TambahPemilikLahan.vue'
 import Litigasi from '../views/Litigasi.vue'
+import ClaimLitigasi from '../views/ClaimLitigasi.vue'
+import TambahLitigasi from '../views/TambahLitigasi.vue'
+import TambahParcelLitigasi from '../views/TambahParcelLitigasi.vue'
 import LahanBebas from '../views/LahanBebas.vue'
 import PengecekanIzinLahan from '../views/PengecekanIzinLahan.vue'
 import StakeHolder from '../views/StakeHolder.vue'
@@ -21,14 +28,49 @@ const router = createRouter({
       component: AsetInventori
     },
     {
+      path: '/aset-inventori/tambah',
+      name: 'tambah-aset-inventori',
+      component: TambahAsetInventori
+    },
+    {
       path: '/pembebasan-lahan',
       name: 'pembebasan-lahan',
       component: PembebasanLahan
     },
     {
+      path: '/pembebasan-lahan/tambah',
+      name: 'tambah-pembebasan-lahan',
+      component: TambahPembebasanLahan
+    },
+    {
+      path: '/pembebasan-lahan/detail/:id',
+      name: 'detail-pembebasan-lahan',
+      component: DetailPembebasanLahan
+    },
+    {
+      path: '/pembebasan-lahan/tambah-pemilik',
+      name: 'tambah-pemilik-lahan',
+      component: TambahPemilikLahan
+    },
+    {
       path: '/litigasi',
       name: 'litigasi',
       component: Litigasi
+    },
+    {
+      path: '/litigasi/claim/:id',
+      name: 'claim-litigasi',
+      component: ClaimLitigasi
+    },
+    {
+      path: '/litigasi/tambah',
+      name: 'tambah-litigasi',
+      component: TambahLitigasi
+    },
+    {
+      path: '/litigasi/tambah-parcel',
+      name: 'tambah-parcel-litigasi',
+      component: TambahParcelLitigasi
     },
     {
       path: '/geospasial/lahan-bebas',

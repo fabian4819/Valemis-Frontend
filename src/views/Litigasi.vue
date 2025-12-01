@@ -20,10 +20,10 @@
       <div class="container-fluid">
         <div class="card mb-4">
           <div class="card-body">
-            <div>
-              <a href="#" class="btn btn-primary">
+            <div class="mb-3">
+              <router-link to="/litigasi/tambah" class="btn btn-primary">
                 <i class="bi bi-plus"></i> Tambah Responden
-              </a>
+              </router-link>
             </div>
             <table ref="dataTable1" class="display table table-striped table-bordered">
               <thead>
@@ -58,9 +58,9 @@
                     </a>
                   </td>
                   <td class="text-center">
-                    <a href="#" class="btn btn-primary btn-sm" title="Edit">
+                    <router-link to="/litigasi/claim/1" class="btn btn-primary btn-sm" title="Edit">
                       <i class="bi bi-pencil-square"></i>
-                    </a>
+                    </router-link>
                     <button class="btn btn-danger" title="Hapus">
                       <i class="bi bi-trash"></i>
                     </button>
@@ -131,9 +131,9 @@
         <div class="card mb-4">
           <div class="card-body">
             <div class="d-flex justify-content-between mb-3">
-              <a href="#" class="btn btn-success">
+              <router-link to="/litigasi/tambah-parcel" class="btn btn-success">
                 <i class="bi bi-geo"></i> Tambah Parcel
-              </a>
+              </router-link>
             </div>
             <table ref="dataTable2" class="display table table-striped table-bordered">
               <thead>
