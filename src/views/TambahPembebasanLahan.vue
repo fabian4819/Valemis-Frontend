@@ -126,9 +126,9 @@ onMounted(() => {
       featureGroup: drawnItems
     },
     draw: {
-      polygon: true,
+      polygon: {},
       polyline: false,
-      rectangle: true,
+      rectangle: {},
       circle: false,
       marker: false,
       circlemarker: false

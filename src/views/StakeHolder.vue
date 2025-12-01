@@ -341,7 +341,6 @@ const stakeholderTable = ref<HTMLTableElement>()
 const matrixChart = ref<HTMLCanvasElement>()
 const sentimentChart = ref<HTMLCanvasElement>()
 
-let chartInstance: Chart | null = null
 let sentimentChartInstance: Chart | null = null
 
 onMounted(() => {
@@ -362,7 +361,7 @@ onMounted(() => {
   if (matrixChart.value) {
     const ctx = matrixChart.value.getContext('2d')
     if (ctx) {
-      chartInstance = new Chart(ctx, {
+      new Chart(ctx, {
         type: 'scatter',
         data: {
           datasets: [{
