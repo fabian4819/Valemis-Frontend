@@ -13,6 +13,7 @@ import TambahParcelLitigasi from '../views/TambahParcelLitigasi.vue'
 import LahanBebas from '../views/LahanBebas.vue'
 import PengecekanIzinLahan from '../views/PengecekanIzinLahan.vue'
 import StakeHolder from '../views/StakeHolder.vue'
+import StakeHolderAdvanced from '../views/StakeHolderAdvanced.vue'
 import TambahStakeHolder from '../views/TambahStakeHolder.vue'
 import DetailStakeHolder from '../views/DetailStakeHolder.vue'
 
@@ -94,6 +95,11 @@ const router = createRouter({
       path: '/stake-holder',
       name: 'stake-holder',
       component: StakeHolder
+    },
+    {
+      path: '/stakeholder-advanced',
+      name: 'stakeholder-advanced',
+      component: StakeHolderAdvanced
     },
     {
       path: '/stake-holder/tambah',

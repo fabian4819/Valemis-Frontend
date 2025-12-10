@@ -65,11 +65,28 @@
           </li>
 
           <!-- Stakeholder Management Module -->
-          <li class="nav-item" :class="{ active: route.path.startsWith('/stake-holder') }">
-            <router-link to="/stake-holder" class="nav-link">
+          <li class="nav-item" :class="{ active: route.path.startsWith('/stake-holder') || route.path.startsWith('/stakeholder-advanced') }">
+            <a href="#" class="nav-link">
               <i class="nav-icon bi bi-people"></i>
-              <p>Stakeholder Management</p>
-            </router-link>
+              <p>
+                Stakeholder Management
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link to="/stake-holder" class="nav-link" :class="{ active: route.path === '/stake-holder' }">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Basic Management</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link to="/stakeholder-advanced" class="nav-link" :class="{ active: route.path === '/stakeholder-advanced' }">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Advanced Analytics</p>
+                </router-link>
+              </li>
+            </ul>
           </li>
 
           <li class="nav-header">INVENTORY & DATA</li>
