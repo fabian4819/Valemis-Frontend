@@ -6,14 +6,6 @@
     </div>
 
     <div class="header-right">
-      <!-- Search -->
-      <button class="header-icon-button" @click="toggleSearch">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"></circle>
-          <path d="m21 21-4.35-4.35"></path>
-        </svg>
-      </button>
-
       <!-- Notifications -->
       <button class="header-icon-button notification-button" @click="toggleNotifications">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -39,22 +31,6 @@
 
     <!-- Dropdowns Container -->
     <div class="dropdowns-container">
-      <!-- Search Dropdown -->
-      <transition name="fade">
-        <div v-if="showSearch" class="dropdown search-dropdown">
-          <div class="search-input-wrapper">
-            <input 
-              type="text" 
-              class="search-input" 
-              placeholder="Search anything..." 
-              v-model="searchQuery"
-              @keyup.enter="performSearch"
-              autofocus
-            >
-          </div>
-        </div>
-      </transition>
-
       <!-- Notifications Dropdown -->
       <transition name="fade">
         <div v-if="showNotifications" class="dropdown notifications-dropdown">
@@ -145,10 +121,8 @@ const userRole = ref('Admin Store')
 const userEmail = ref('ferra@valemis.com')
 const userAvatar = ref('https://ui-avatars.com/api/?name=Ferna+Alexandra&background=4F46E5&color=fff')
 
-const showSearch = ref(false)
 const showNotifications = ref(false)
 const showProfile = ref(false)
-const searchQuery = ref('')
 
 const notifications = ref([
   {
@@ -177,26 +151,14 @@ const notifications = ref([
   }
 ])
 
-const toggleSearch = () => {
-  showSearch.value = !showSearch.value
-  showNotifications.value = false
-  showProfile.value = false
-}
-
 const toggleNotifications = () => {
   showNotifications.value = !showNotifications.value
-  showSearch.value = false
   showProfile.value = false
 }
 
 const toggleProfile = () => {
   showProfile.value = !showProfile.value
-  showSearch.value = false
   showNotifications.value = false
-}
-
-const performSearch = () => {
-  console.log('Searching for:', searchQuery.value)
 }
 </script>
 

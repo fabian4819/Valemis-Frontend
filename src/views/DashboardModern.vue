@@ -10,21 +10,21 @@
 
       <!-- Jumlah Lahan Di Bebaskan Card -->
       <div class="stat-card white">
-        <div class="stat-badge success">More info →</div>
         <div class="stat-label">Jumlah Lahan Di Bebaskan</div>
         <div class="stat-value dark">53 <small style="font-size: 18px;">Parcil</small></div>
       </div>
 
       <!-- Total Biaya Card -->
       <div class="stat-card white">
-        <div class="stat-badge success">More info →</div>
         <div class="stat-label">Total Biaya</div>
-        <div class="stat-value dark"><small style="font-size: 14px;">Rp.</small> 13.000.000.000</div>
+        <div class="stat-value dark stat-value-flex">
+          <span class="currency">Rp.</span>
+          <span class="amount">13.000.000.000</span>
+        </div>
       </div>
 
       <!-- Grafik Total Card -->
       <div class="stat-card white">
-        <div class="stat-badge success">More info →</div>
         <div class="stat-label">Grafik Total</div>
         <div class="stat-value dark">78 <small style="font-size: 18px;">%</small></div>
       </div>
@@ -36,13 +36,6 @@
       <div class="chart-card">
         <div class="card-header">
           <h3 class="card-title">Luas Lahan</h3>
-          <div class="card-tools">
-            <button class="tool-button" title="Collapse">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                <path fill-rule="evenodd" d="M8 4a.5.5 0 01.5.5v3h3a.5.5 0 010 1h-3v3a.5.5 0 01-1 0v-3h-3a.5.5 0 010-1h3v-3A.5.5 0 018 4z"></path>
-              </svg>
-            </button>
-          </div>
         </div>
         <div class="card-body">
           <canvas ref="barChart1" height="250"></canvas>
@@ -53,13 +46,6 @@
       <div class="chart-card">
         <div class="card-header">
           <h3 class="card-title">Lahan Di Bebaskan</h3>
-          <div class="card-tools">
-            <button class="tool-button" title="Collapse">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                <path fill-rule="evenodd" d="M8 4a.5.5 0 01.5.5v3h3a.5.5 0 010 1h-3v3a.5.5 0 01-1 0v-3h-3a.5.5 0 010-1h3v-3A.5.5 0 018 4z"></path>
-              </svg>
-            </button>
-          </div>
         </div>
         <div class="card-body">
           <canvas ref="barChart2" height="250"></canvas>
@@ -70,13 +56,6 @@
       <div class="chart-card">
         <div class="card-header">
           <h3 class="card-title">Total Biaya</h3>
-          <div class="card-tools">
-            <button class="tool-button" title="Collapse">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                <path fill-rule="evenodd" d="M8 4a.5.5 0 01.5.5v3h3a.5.5 0 010 1h-3v3a.5.5 0 01-1 0v-3h-3a.5.5 0 010-1h3v-3A.5.5 0 018 4z"></path>
-              </svg>
-            </button>
-          </div>
         </div>
         <div class="card-body">
           <canvas ref="barChart3" height="250"></canvas>
@@ -87,13 +66,6 @@
       <div class="chart-card">
         <div class="card-header">
           <h3 class="card-title">Grand Total</h3>
-          <div class="card-tools">
-            <button class="tool-button" title="Collapse">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                <path fill-rule="evenodd" d="M8 4a.5.5 0 01.5.5v3h3a.5.5 0 010 1h-3v3a.5.5 0 01-1 0v-3h-3a.5.5 0 010-1h3v-3A.5.5 0 018 4z"></path>
-              </svg>
-            </button>
-          </div>
         </div>
         <div class="card-body">
           <canvas ref="barChart4" height="250"></canvas>
@@ -286,15 +258,15 @@ onMounted(() => {
 /* Stats Grid */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
   margin-bottom: 24px;
 }
 
 .stat-card {
   background: white;
   border-radius: 16px;
-  padding: 28px;
+  padding: 20px 24px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   position: relative;
   overflow: hidden;
@@ -329,9 +301,9 @@ onMounted(() => {
 }
 
 .stat-label {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   color: #64748B;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -342,7 +314,7 @@ onMounted(() => {
 }
 
 .stat-value {
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 700;
   margin-bottom: 4px;
   line-height: 1.2;
@@ -351,6 +323,26 @@ onMounted(() => {
 
 .stat-value.dark {
   color: #1E293B;
+}
+
+.stat-value-flex {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.stat-value-flex .currency {
+  font-size: 14px;
+  font-weight: 600;
+  color: #64748B;
+  flex-shrink: 0;
+}
+
+.stat-value-flex .amount {
+  font-size: clamp(18px, 2vw, 28px);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1;
 }
 
 .stat-badge {
