@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Dashboard from '../views/Dashboard.vue'
+import DashboardModern from '../views/DashboardModern.vue'
 import AsetInventori from '../views/AsetInventori.vue'
 import TambahAsetInventori from '../views/TambahAsetInventori.vue'
 import PembebasanLahan from '../views/PembebasanLahan.vue'
@@ -29,7 +29,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'dashboard',
-      component: Dashboard
+      component: DashboardModern
     },
     {
       path: '/aset-inventori',
