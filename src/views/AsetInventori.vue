@@ -475,7 +475,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onUnmounted, watch, nextTick } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 
@@ -525,7 +525,7 @@ interface FormData {
 
 
 const selectedVillage = ref<string>('all')
-const showMap = ref<boolean>(false)
+const showMap = ref<boolean>(true)  // Default to show map first
 const assetMapContainer = ref<HTMLElement | null>(null)
 const assetModalRef = ref<HTMLElement | null>(null)
 let assetMap: L.Map | null = null
@@ -888,6 +888,15 @@ const deleteAsset = (asset: Asset) => {
     }
   }
 }
+
+// Initialize map on mount if showMap is true
+onMounted(() => {
+  if (showMap.value) {
+    nextTick(() => {
+      initAssetMap()
+    })
+  }
+})
 
 watch(showMap, (newVal) => {
   if (newVal) {

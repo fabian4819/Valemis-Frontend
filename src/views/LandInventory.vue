@@ -481,7 +481,7 @@ interface FormData {
 
 const selectedCategory = ref<string>('all')
 const selectedCertificate = ref<string>('all')
-const showMap = ref<boolean>(false)
+const showMap = ref<boolean>(true)  // Default to show map first
 const landMapContainer = ref<HTMLElement | null>(null)
 const landModalRef = ref<HTMLElement | null>(null)
 const newDocument = ref<string>('')
@@ -848,6 +848,15 @@ const exportData = () => {
   
   alert('Data berhasil di-export!')
 }
+
+// Initialize map on mount if showMap is true
+onMounted(() => {
+  if (showMap.value) {
+    nextTick(() => {
+      initLandMap()
+    })
+  }
+})
 
 watch(showMap, (newVal) => {
   if (newVal) {

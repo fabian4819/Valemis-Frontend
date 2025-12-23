@@ -483,7 +483,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onUnmounted, watch, nextTick } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 
@@ -520,7 +520,7 @@ let parcelModalInstance: any = null
 let historyModalInstance: any = null
 
 // Map state
-const showMap = ref<boolean>(false)
+const showMap = ref<boolean>(true)  // Default to show map first
 const acquisitionMapContainer = ref<HTMLElement | null>(null)
 let acquisitionMap: L.Map | null = null
 const selectedMapProject = ref<string | null>(null)
@@ -1014,6 +1014,15 @@ const initAcquisitionMap = () => {
     `)
   })
 }
+
+// Initialize map on mount if showMap is true
+onMounted(() => {
+  if (showMap.value) {
+    nextTick(() => {
+      initAcquisitionMap()
+    })
+  }
+})
 
 // Watch for map toggle
 watch(showMap, (newVal) => {
