@@ -18,51 +18,35 @@
 
     <div class="app-content">
       <div class="container-fluid">
-        <!-- Filter Section -->
+        <!-- Projects Cards (Paling Atas) -->
         <div class="row mb-3">
-          <div class="col-md-3">
-            <div class="card">
+          <div class="col-md-4" v-for="project in projectSummary" :key="project.name">
+            <div class="card border-left-primary">
               <div class="card-body">
-                <label class="form-label"><strong><i class="bi bi-funnel"></i> Filter per Project</strong></label>
-                <select v-model="selectedProject" class="form-select" @change="filterData">
-                  <option value="all">Semua Project</option>
-                  <option value="Project Alpha - Mining Expansion">Project Alpha</option>
-                  <option value="Project Beta - Infrastructure Development">Project Beta</option>
-                  <option value="Project Gamma - Road Access">Project Gamma</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="card">
-              <div class="card-body">
-                <label class="form-label"><strong><i class="bi bi-filter"></i> Status Negosiasi</strong></label>
-                <select v-model="selectedStatus" class="form-select" @change="filterData">
-                  <option value="all">Semua Status</option>
-                  <option value="Bebas">Bebas</option>
-                  <option value="Dalam Negosiasi">Dalam Negosiasi</option>
-                  <option value="Belum Diproses">Belum Diproses</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="row">
-              <div class="col-6">
-                <div class="card bg-success text-white">
-                  <div class="card-body">
-                    <h4 class="mb-0">{{ stats.bebas }}</h4>
-                    <small>Parcel Bebas</small>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h5 class="mb-0">{{ project.name }}</h5>
+                  <span class="badge bg-primary">{{ project.progress }}%</span>
+                </div>
+                <div class="progress mb-2" style="height: 8px;">
+                  <div class="progress-bar bg-success" :style="{ width: project.progress + '%' }"></div>
+                </div>
+                <div class="row text-center">
+                  <div class="col-3">
+                    <small class="text-muted">Terdampak</small>
+                    <p class="mb-0"><strong>{{ project.totalParcels }}</strong></p>
+                  </div>
+                  <div class="col-3">
+                    <small class="text-muted">Bebas</small>
+                    <p class="mb-0"><strong class="text-success">{{ project.bebas }}</strong></p>
+                  </div>
+                  <div class="col-6">
+                    <small class="text-muted">Biaya</small>
+                    <p class="mb-0" style="white-space: nowrap; overflow: visible;"><strong style="font-size: 0.9rem;">{{ formatRupiah(project.totalCost) }}</strong></p>
                   </div>
                 </div>
-              </div>
-              <div class="col-6">
-                <div class="card bg-warning">
-                  <div class="card-body">
-                    <h4 class="mb-0">{{ stats.negosiasi }}</h4>
-                    <small>Dalam Negosiasi</small>
-                  </div>
-                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2 w-100" @click="filterByProject(project.name || '')">
+                  <i class="bi bi-eye"></i> Lihat Detail
+                </button>
               </div>
             </div>
           </div>
@@ -139,35 +123,51 @@
           </div>
         </div>
 
-        <!-- Projects Cards -->
+        <!-- Filter Section (Di bawah peta) -->
         <div class="row mb-3">
-          <div class="col-md-4" v-for="project in projectSummary" :key="project.name">
-            <div class="card border-left-primary">
+          <div class="col-md-3">
+            <div class="card">
               <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                  <h5 class="mb-0">{{ project.name }}</h5>
-                  <span class="badge bg-primary">{{ project.progress }}%</span>
-                </div>
-                <div class="progress mb-2" style="height: 8px;">
-                  <div class="progress-bar bg-success" :style="{ width: project.progress + '%' }"></div>
-                </div>
-                <div class="row text-center">
-                  <div class="col-3">
-                    <small class="text-muted">Terdampak</small>
-                    <p class="mb-0"><strong>{{ project.totalParcels }}</strong></p>
+                <label class="form-label"><strong><i class="bi bi-funnel"></i> Filter per Project</strong></label>
+                <select v-model="selectedProject" class="form-select" @change="filterData">
+                  <option value="all">Semua Project</option>
+                  <option value="Project Alpha - Mining Expansion">Project Alpha</option>
+                  <option value="Project Beta - Infrastructure Development">Project Beta</option>
+                  <option value="Project Gamma - Road Access">Project Gamma</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card">
+              <div class="card-body">
+                <label class="form-label"><strong><i class="bi bi-filter"></i> Status Negosiasi</strong></label>
+                <select v-model="selectedStatus" class="form-select" @change="filterData">
+                  <option value="all">Semua Status</option>
+                  <option value="Bebas">Bebas</option>
+                  <option value="Dalam Negosiasi">Dalam Negosiasi</option>
+                  <option value="Belum Diproses">Belum Diproses</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-6">
+                <div class="card bg-success text-white">
+                  <div class="card-body">
+                    <h4 class="mb-0">{{ stats.bebas }}</h4>
+                    <small>Parcel Bebas</small>
                   </div>
-                  <div class="col-3">
-                    <small class="text-muted">Bebas</small>
-                    <p class="mb-0"><strong class="text-success">{{ project.bebas }}</strong></p>
-                  </div>
-                  <div class="col-6">
-                    <small class="text-muted">Biaya</small>
-                    <p class="mb-0" style="white-space: nowrap; overflow: visible;"><strong style="font-size: 0.9rem;">{{ formatRupiah(project.totalCost) }}</strong></p>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="card bg-warning">
+                  <div class="card-body">
+                    <h4 class="mb-0">{{ stats.negosiasi }}</h4>
+                    <small>Dalam Negosiasi</small>
                   </div>
                 </div>
-                <button class="btn btn-sm btn-outline-primary mt-2 w-100" @click="filterByProject(project.name || '')">
-                  <i class="bi bi-eye"></i> Lihat Detail
-                </button>
               </div>
             </div>
           </div>
